@@ -1,5 +1,6 @@
 <html>
 	<head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>
 			window.onload = function(){
@@ -24,12 +25,12 @@
 				.then(res => res.json())
 				.then((out) => {
 					document.getElementById("data").innerHTML = 
-					"<br/>Received: " + (out.Received / 100000000) + "<br />" +
-					"Sent: " + (out.Sent / 100000000) + "<br />" +
-					"Fees Paid: " + (out.FeesPaid / 100000000) + "<br />" +
-					"Forged Rewards: " + (out.ForgedRewards / 100000000) + "<br />" +
-					"Fees Received: " + (out.FeesReceived / 100000000) + "<br />" +
-					"<b>TOTAL</b>: " + (out.Total / 100000000);
+					"<label class='col-sm-3 col-form-label'>Received:</label><label class='col-sm-4 col-form-label'>" + Number(out.Received / 100000000).toLocaleString() + "</label><br />" +
+					"<label class='col-sm-3 col-form-label'>Sent:</label><label class='col-sm-4 col-form-label'>" + Number(out.Sent / 100000000).toLocaleString() + "</label><br />" +
+					"<label class='col-sm-3 col-form-label'>Fees Paid:</label><label class='col-sm-3 col-form-label'>" + Number(out.FeesPaid / 100000000).toLocaleString() + "</label><br />" +
+					"<label class='col-sm-3 col-form-label'>Forged Rewards:</label><label class='col-sm-3 col-form-label'>" + Number(out.ForgedRewards / 100000000).toLocaleString() + "</label><br />" +
+					"<label class='col-sm-3 col-form-label'>Fees Received:</label><label class='col-sm-3 col-form-label'>" + Number(out.FeesReceived / 100000000).toLocaleString() + "</label><br />" +
+					"<label class='col-sm-3 col-form-label'><b>TOTAL</b>:</label><label class='col-sm-3 col-form-label'>" + Number(out.Total / 100000000).toLocaleString() + "</label>";
 				}).catch(err => console.error(err));
 
 			}
@@ -37,24 +38,29 @@
 	</head>
 	
 	<body>
-		Address: <input id='address' type='text'><br />
-		DateTime: <input id='datetime' type='datetime-local'><br />
-		
-		<div>
-		  <input type="radio" id="transaction" name="timestamp" value="transaction" checked>
-		  <label for="transaction">Transaction Timestmp</label>
-		</div>
+    <div class="form-group row">
+        <label for='address' class="col-sm-3 col-form-label">Address:</label>
+        <input class="col-sm-4" id="address" type="text" value="">
+    </div>
+    <div class="form-group row">
+        <label for='datetime' class="col-sm-3 col-form-label">DateTime:</label>
+        <input class="col-sm-4" id='datetime' type='datetime-local'>
+    </div>
 
-		<div>
-		  <input type="radio" id="block" name="timestamp" value="block">
-		  <label for="block">Block Timestamp</label>
-		</div>
+
+    <label class="col-form-label" for="transaction">Transaction Timestmp</label>
+    <input class="col-sm-2" type="radio" id="transaction" name="timestamp" value="transaction" checked>
+    
+    <label class="col-form-label" for="block">Block Timestamp</label>
+    <input class="col-sm-2" type="radio" id="block" name="timestamp" value="block">
+
+    <br />
+    <br />
 		
-		<br />
+		<button class="btn btn-success btn-lg" onclick="submit()">Submit</button>
 		
-		<button onclick="submit()">Submit</button>
-		
-		<br />
+    <br />
+    <br />
 		
 		<div id="data">
 		</div>
