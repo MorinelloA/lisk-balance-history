@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+			window.onload = function(){
+				$("#datetime").val(new Date().toJSON().slice(0,16));
+			};
+			
+			function submit(){
+				let addr = document.getElementById("address").value.trim();
+				
+				let datetime = document.getElementById("datetime").value;
+				let liskdatetime = Date.parse(datetime) / 1000 - 1464109200;
+				
+				let timestampToggle = "false";
+				if(document.getElementById("block").checked)
+				{
+					timestampToggle = "true";
+				}
+				
+				let url = "http://api.lisk.support/v1/addresshistory?address=" + addr + "&timestamp=" + liskdatetime + "&timeByBlock=" + timestampToggle;
+				
+				fetch(url)
+				.then(res => res.json())
+				.then((out) => {
+					document.getElementById("data").innerHTML = 
+					"<br/>Received: " + (out.Received / 100000000) + "<br />" +
+					"Sent: " + (out.Sent / 100000000) + "<br />" +
+					"Fees Paid: " + (out.FeesPaid / 100000000) + "<br />" +
+					"Forged Rewards: " + (out.ForgedRewards / 100000000) + "<br />" +
+					"Fees Received: " + (out.FeesReceived / 100000000) + "<br />" +
+					"<b>TOTAL</b>: " + (out.Total / 100000000);
+				}).catch(err => console.error(err));
+
+			}
+		</script>
+	</head>
+	
+	<body>
+		Address: <input id='address' type='text'><br />
+		DateTime: <input id='datetime' type='datetime-local'><br />
+		
+		<div>
+		  <input type="radio" id="transaction" name="timestamp" value="transaction" checked>
+		  <label for="transaction">Transaction Timestmp</label>
+		</div>
+
+		<div>
+		  <input type="radio" id="block" name="timestamp" value="block">
+		  <label for="block">Block Timestamp</label>
+		</div>
+		
+		<br />
+		
+		<button onclick="submit()">Submit</button>
+		
+		<br />
+		
+		<div id="data">
+		</div>
+	</body>
+<html>
