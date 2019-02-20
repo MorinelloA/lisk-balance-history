@@ -16,9 +16,13 @@ function submit(){
   
   let url = "http://api.lisk.support/v1/addresshistory?address=" + addr + "&timestamp=" + liskdatetime + "&timeByBlock=" + timestampToggle;
   
+  document.getElementById("loading").style.display = 'block';
+
   fetch(url)
   .then(res => res.json())
   .then((out) => {
+    document.getElementById("loading").style.display = 'none';
+    document.getElementById("error").style.display = 'none';
     document.getElementById("data").innerHTML = 
     "<label class='col-sm-3 col-form-label'>Received:</label><label class='col-sm-4 col-form-label'>" + Number(out.Received / 100000000).toLocaleString() + "</label><br />" +
     "<label class='col-sm-3 col-form-label'>Sent:</label><label class='col-sm-4 col-form-label'>" + Number(out.Sent / 100000000).toLocaleString() + "</label><br />" +
@@ -26,6 +30,6 @@ function submit(){
     "<label class='col-sm-3 col-form-label'>Forged Rewards:</label><label class='col-sm-3 col-form-label'>" + Number(out.ForgedRewards / 100000000).toLocaleString() + "</label><br />" +
     "<label class='col-sm-3 col-form-label'>Fees Received:</label><label class='col-sm-3 col-form-label'>" + Number(out.FeesReceived / 100000000).toLocaleString() + "</label><br />" +
     "<label class='col-sm-3 col-form-label'><b>TOTAL</b>:</label><label class='col-sm-3 col-form-label'>" + Number(out.Total / 100000000).toLocaleString() + "</label>";
-  }).catch(err => console.error(err));
+  }).catch(err => document.getElementById("error").style.display = 'block');
 
 }
