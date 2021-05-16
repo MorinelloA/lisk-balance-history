@@ -1,52 +1,44 @@
 <html>
-	<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="scripts.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <title>Lisk Balance History</title>
-	</head>
-	
-	<body>
-    <div class="jumbotron">
-      <h1 class="display-4">Lisk Balance History</h1>
-    </div>
-    <div id='innerbody'>
-    <div class="form-group row">
-        <label for='address' class="col-sm-3 col-form-label">Address:</label>
-        <input class="col-sm-5" id="address" type="text" value="">
-    </div>
-    <div class="form-group row">
-        <label for='datetime' class="col-sm-3 col-form-label">DateTime:</label>
-        <input class="col-sm-5" id='datetime' type='datetime-local'>
-    </div>
-
-
-    <label class="col-form-label" for="transaction">Transaction Timestmp</label>
-    <input class="col-sm-2" type="radio" id="transaction" name="timestamp" value="transaction" checked>
-    
-    <label class="col-form-label" for="block">Block Timestamp</label>
-    <input class="col-sm-2" type="radio" id="block" name="timestamp" value="block">
-
-    <br />
-    <br />
-		
-		<button class="btn btn-success btn-lg" onclick="submit()">Submit</button>
-		
-    <br />
-    <br />
-		<div id="loading" class="alert alert-primary" role="alert">
-      Data is loading
-    </div>
-
-    <div id="error" class="alert alert-danger" role="alert">
-      Error loading Data
-    </div>
-		<div id="data">
-    </div>
-  </div>
-  <div class="card-footer text-white bg-dark text-center py-3 blue">
-      Developed by <a href="https://explorer.lisk.io/delegate/15297866638783057016L">TonyT908</a> - Source Code available at <a href="https://github.com/MorinelloA/Balance-History">Github.com</a>
-  </div>
-  </body>
+   <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="scripts.js"></script>
+      <link rel="stylesheet" href="styles.css">
+      <title>Lisk Balance History</title>
+   </head>
+   <body>
+      <div class="jumbotron">
+         <h1 class="display-4">Lisk Balance History</h1>
+      </div>
+      <div id='innerbody'>
+         <div class="form-group row">
+            <label for='address' class="col-sm-3 col-form-label">Address:</label>
+            <input class="col-sm-5" id="address" type="text" value="">
+         </div>
+         <div class="form-group row">
+            <label for='datetime' class="col-sm-3 col-form-label">DateTime:</label>
+            <input class="col-sm-5" id='datetime' type='datetime-local'>
+         </div>
+         <label class="col-form-label" for="transaction">Transaction Timestmp</label>
+         <input class="col-sm-2" type="radio" id="transaction" name="timestamp" value="transaction" checked>
+         <label class="col-form-label" for="block">Block Timestamp</label>
+         <input class="col-sm-2" type="radio" id="block" name="timestamp" value="block">
+         <br />
+         <br />
+         <button class="btn btn-success btn-lg" onclick="submit()">Submit</button>
+         <br />
+         <br />
+         <div id="loading" class="alert alert-primary" role="alert">
+            Data is loading
+         </div>
+         <div id="error" class="alert alert-danger" role="alert">
+            Error loading Data
+         </div>
+         <div id="data">
+         </div>
+      </div>
+      <div class="card-footer text-white bg-dark text-center py-3 blue">
+         Developed by <a href="https://explorer.lisk.io/delegate/15297866638783057016L">TonyT908</a> - Source Code available at <a href="https://github.com/MorinelloA/Balance-History">Github.com</a>
+      </div>
+   </body>
 </html>
