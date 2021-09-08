@@ -33,7 +33,7 @@ function submit(){
 
 function getReceivedLisk()
 {
-  fetch("https://wallet.lisknode.io/api/transactions?toTimestamp=" + timestamp + "&limit=100&offset=" + offset + "&recipientId=" + address)
+  fetch("https://legacy-mainnet.lisk.com/api/transactions?toTimestamp=" + timestamp + "&limit=100&offset=" + offset + "&recipientId=" + address)
   .then(res => res.json())
   .then((out) => {
     if(toggle)
@@ -65,7 +65,7 @@ function getReceivedLisk()
 
 function receivedBlockCheck(trans)
 {
-  fetch("https://wallet.lisknode.io/api/blocks?blockId=" + trans.data[blockOffset].blockId)
+  fetch("https://legacy-mainnet.lisk.com/api/blocks?blockId=" + trans.data[blockOffset].blockId)
   .then(res => res.json())
   .then((out2) => {
     if(Number(out2.data[0].timestamp) <= timestamp)
@@ -99,7 +99,7 @@ function receivedBlockCheck(trans)
 
 function getSentLisk()
 {
-  fetch("https://wallet.lisknode.io/api/transactions?toTimestamp=" + timestamp + "&limit=100&offset=" + offset + "&senderId=" + address)
+  fetch("https://legacy-mainnet.lisk.com/api/transactions?toTimestamp=" + timestamp + "&limit=100&offset=" + offset + "&senderId=" + address)
   .then(res => res.json())
   .then((out) => {
     if(toggle)
@@ -132,7 +132,7 @@ function getSentLisk()
 
 function sentBlockCheck(trans)
 {
-  fetch("https://wallet.lisknode.io/api/blocks?blockId=" + trans.data[blockOffset].blockId)
+  fetch("https://legacy-mainnet.lisk.com/api/blocks?blockId=" + trans.data[blockOffset].blockId)
   .then(res => res.json())
   .then((out2) => {
     if(Number(out2.data[0].timestamp) <= timestamp)
@@ -169,7 +169,7 @@ function getForgedLisk()
 {
   let unixTimestamp = (timestamp * 1000) + 1464109200000;
 
-  fetch("https://wallet.lisknode.io/api/delegates/" + address + "/forging_statistics?toTimestamp=" + unixTimestamp)
+  fetch("https://legacy-mainnet.lisk.com/api/delegates/" + address + "/forging_statistics?toTimestamp=" + unixTimestamp)
   .then(res => res.json())
   .then((out) => {
     data.forged = out.data.rewards;
